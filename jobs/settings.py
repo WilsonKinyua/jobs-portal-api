@@ -19,7 +19,7 @@ import django_heroku
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Environment
-ENV = config('ENV', default='development')
+MODE = config('MODE', default='development')
 
 
 # Quick-start development settings - unsuitable for production
@@ -29,7 +29,7 @@ ENV = config('ENV', default='development')
 SECRET_KEY = config('SECRET_KEY', default='secret_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True if ENV == 'development' else False
+DEBUG = True if MODE == 'development' else False
 
 ALLOWED_HOSTS = ['*']
 
@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'jobs.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-if ENV == 'production':
+if MODE == 'production':
     DATABASES = {
         'default': dj_database_url.config(default=config('DATABASE_URL'))
     }
