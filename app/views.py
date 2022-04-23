@@ -92,9 +92,8 @@ class JobList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 # single job
-
-
 class JobDetail(APIView):
     """
         job detail view
@@ -133,3 +132,43 @@ class JobDetail(APIView):
         job = self.get_object(pk)
         job.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+# get all jobs by category_id
+class JobByCategory(APIView):
+    """
+        job by category view
+    """
+    schema = get_schema_view()
+
+    def get_object(self, pk):
+        try:
+            return Category.objects.get(pk=pk)
+        except Category.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        category = self.get_object(pk)
+        jobs = Job.objects.filter(category=category)
+        serializer = JobSerializer(jobs, many=True)
+        return Response(serializer.data)
+
+
+# get all jobs by user_id
+class JobByUser(APIView):
+    """
+        job by user view
+    """
+    schema = get_schema_view()
+
+    def get_object(self, pk):
+        try:
+            return User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        user = self.get_object(pk)
+        jobs = Job.objects.filter(user=user)
+        serializer = JobSerializer(jobs, many=True)
+        return Response(serializer.data)
