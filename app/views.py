@@ -15,7 +15,7 @@ class createUser(APIView):
     Args:
         generics ([type]): [description]
     """
-    
+
     schema = get_schema_view()
 
     @swagger_auto_schema(
@@ -32,24 +32,38 @@ class createUser(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-
 # list categories
 class CategoryList(APIView):
     """
         category list view
     """
+
     def get(self, request, format=None):
         categories = Category.objects.all()
         serializer = CategorySerializer(categories, many=True)
         return Response(serializer.data)
 
 
-# jobs 
+# jobs
 class JobList(APIView):
     """
         job list view
     """
+    schema = get_schema_view()
+
     def get(self, request, format=None):
         jobs = Job.objects.all()
         serializer = JobSerializer(jobs, many=True)
         return Response(serializer.data)
+
+    @swagger_auto_schema(
+        operation_description="Create a new Job Application",
+        request_body=CreateJobSerializer,
+    )
+    # create job
+    def post(self, request, format=None):
+        serializer = CreateJobSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

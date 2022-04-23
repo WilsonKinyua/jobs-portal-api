@@ -60,7 +60,6 @@ class CreateJobSerializer(serializers.ModelSerializer):
         model = Job
         fields = ('company_name', 'company_email', 'company_phone', 'company_website', 'company_linkedin', 'company_logo', 'company_location', 'title', 'category',
                   'salary_range', 'job_type', 'job_description', 'location', 'application_deadline', 'experience', 'qualification', 'link_to_job', 'user')
-        extra_kwargs = {'user': {'read_only': True}}
 
     # create job
     def create(self, validated_data):
