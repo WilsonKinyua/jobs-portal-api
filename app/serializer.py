@@ -41,7 +41,7 @@ class UserCreationSerializer(serializers.ModelSerializer):
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ('name', 'icon', 'description')
+        fields = '__all__'
 
 
 # jobs serializer
@@ -65,27 +65,3 @@ class CreateJobSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         job = Job.objects.create(**validated_data)
         return job
-
-    # # update job
-    # def update(self, instance, validated_data):
-    #     instance.company_name = validated_data.get('company_name', instance.company_name)
-    #     instance.company_email = validated_data.get('company_email', instance.company_email)
-    #     instance.company_phone = validated_data.get('company_phone', instance.company_phone)
-    #     instance.company_website = validated_data.get('company_website', instance.company_website)
-    #     instance.company_linkedin = validated_data.get('company_linkedin', instance.company_linkedin)
-    #     instance.company_logo = validated_data.get('company_logo', instance.company_logo)
-    #     instance.company_location = validated_data.get('company_location', instance.company_location)
-    #     instance.title = validated_data.get('title', instance.title)
-    #     instance.category = validated_data.get('category', instance.category)
-    #     instance.description = validated_data.get('description', instance.description)
-    #     instance.salary_range = validated_data.get('salary_range', instance.salary_range)
-    #     instance.job_type = validated_data.get('job_type', instance.job_type)
-    #     instance.job_description = validated_data.get('job_description', instance.job_description)
-    #     instance.location = validated_data.get('location', instance.location)
-    #     instance.application_deadline = validated_data.get('application_deadline', instance.application_deadline)
-    #     instance.experience = validated_data.get('experience', instance.experience)
-    #     instance.qualification = validated_data.get('qualification', instance.qualification)
-    #     instance.link_to_job = validated_data.get('link_to_job', instance.link_to_job)
-    #     instance.user = validated_data.get('user', instance.user)
-    #     instance.save()
-    #     return instance
