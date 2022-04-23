@@ -7,4 +7,5 @@ urlpatterns = [
     path('user/details/', getUser.as_view(), name='get_user'), # get user
     path('category/list/', CategoryList.as_view(), name='category_list'), # list categories
     path('jobs/', JobList.as_view(), name='job_list'),
+    path('job/<int:pk>/details', JobDetail.as_view(), name='job_details'),
 ]

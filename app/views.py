@@ -10,6 +10,8 @@ from drf_yasg.utils import swagger_auto_schema
 # from rest_framework.permissions import IsAuthenticated
 
 # create user
+
+
 class createUser(APIView):
     """This handles user creation functionality
     Args:
@@ -38,13 +40,13 @@ class getUser(APIView):
     Args:
         generics ([type]): [description]
     """
-    
+
     def get_object(self, token):
         try:
             return User.objects.get(auth_token=token)
         except User.DoesNotExist:
             raise Http404
-        
+
     def get(self, request, format=None):
         data = {}
         if request.META.get('HTTP_AUTHORIZATION') is None:
@@ -52,7 +54,7 @@ class getUser(APIView):
             return Response(data, status=status.HTTP_400_BAD_REQUEST)
         user = self.get_object(request.META.get('HTTP_AUTHORIZATION'))
         return Response(UserSerializer(user).data, status=status.HTTP_200_OK)
-        
+
 
 # list categories
 class CategoryList(APIView):
@@ -69,7 +71,7 @@ class CategoryList(APIView):
 # jobs
 class JobList(APIView):
     """
-        job list view
+        jobs list view
     """
     schema = get_schema_view()
 
@@ -89,3 +91,45 @@ class JobList(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# single job
+
+
+class JobDetail(APIView):
+    """
+        job detail view
+    """
+    schema = get_schema_view()
+
+    def get_object(self, pk):
+        try:
+            return Job.objects.get(pk=pk)
+        except Job.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        job = self.get_object(pk)
+        serializer = JobSerializer(job)
+        return Response(serializer.data)
+
+    @swagger_auto_schema(
+        operation_description="Update a Job Application",
+        request_body=CreateJobSerializer,
+    )
+    # update job
+    def put(self, request, pk, format=None):
+        job = self.get_object(pk)
+        serializer = CreateJobSerializer(job, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @swagger_auto_schema(
+        operation_description="Delete a Job Application",
+    )
+    # delete job
+    def delete(self, request, pk, format=None):
+        job = self.get_object(pk)
+        job.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
