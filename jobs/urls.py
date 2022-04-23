@@ -16,7 +16,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.authtoken.views import obtain_auth_token
-from rest_framework.authtoken import views
 
 # swagger
 from drf_yasg.views import get_schema_view
@@ -36,8 +35,7 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     # auth token
-    path('api/auth/', obtain_auth_token),
-    path('api/token/auth/', views.obtain_auth_token),
+    path('api/auth/token/', obtain_auth_token),
     path("", include("app.urls")),
     # swagger ui
     path('', schema_view.with_ui('swagger', cache_timeout=0),
