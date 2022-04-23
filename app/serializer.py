@@ -9,7 +9,8 @@ class UserSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = User
-        exclude = ('password','user_permissions','id','groups','is_superuser','is_staff','is_active','date_joined','last_login')
+        exclude = ('password', 'user_permissions', 'id', 'groups',
+                   'is_superuser', 'is_staff', 'is_active', 'date_joined', 'last_login')
 
 
 # create user serializer
@@ -35,7 +36,7 @@ class UserCreationSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
-    
+
 
 # jobs category serializer
 class CategorySerializer(serializers.ModelSerializer):
@@ -49,7 +50,7 @@ class JobSerializer(serializers.ModelSerializer):
     class Meta:
         model = Job
         fields = ('company_name', 'company_email', 'company_phone', 'company_website', 'company_linkedin', 'company_logo', 'company_location', 'title', 'slug', 'category',
-                  'description', 'salary_range', 'job_type', 'job_description', 'location', 'application_deadline', 'experience', 'qualification', 'link_to_job', 'user', 'created_at')
+                  'salary_range', 'job_type', 'job_description', 'location', 'application_deadline', 'experience', 'qualification', 'link_to_job', 'user', 'created_at')
         extra_kwargs = {'user': {'read_only': True}}
 
 
@@ -58,7 +59,7 @@ class CreateJobSerializer(serializers.ModelSerializer):
     class Meta:
         model = Job
         fields = ('company_name', 'company_email', 'company_phone', 'company_website', 'company_linkedin', 'company_logo', 'company_location', 'title', 'category',
-                  'description', 'salary_range', 'job_type', 'job_description', 'location', 'application_deadline', 'experience', 'qualification', 'link_to_job', 'user')
+                  'salary_range', 'job_type', 'job_description', 'location', 'application_deadline', 'experience', 'qualification', 'link_to_job', 'user')
         extra_kwargs = {'user': {'read_only': True}}
 
     # create job

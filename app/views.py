@@ -35,7 +35,21 @@ class createUser(APIView):
 
 # list categories
 class CategoryList(APIView):
+    """
+        category list view
+    """
     def get(self, request, format=None):
         categories = Category.objects.all()
         serializer = CategorySerializer(categories, many=True)
+        return Response(serializer.data)
+
+
+# jobs 
+class JobList(APIView):
+    """
+        job list view
+    """
+    def get(self, request, format=None):
+        jobs = Job.objects.all()
+        serializer = JobSerializer(jobs, many=True)
         return Response(serializer.data)

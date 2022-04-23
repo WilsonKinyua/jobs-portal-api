@@ -2,6 +2,7 @@ from django.utils.text import slugify
 from django.db import models
 import datetime as dt
 from django.contrib.auth.models import User
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 # jobs category model
@@ -18,23 +19,22 @@ class Category(models.Model):
 class Job(models.Model):
     company_name = models.CharField(max_length=100)
     company_email = models.EmailField(max_length=100)
-    company_phone = models.CharField(max_length=100)
-    company_website = models.CharField(max_length=1000, default='')
-    company_linkedin = models.CharField(max_length=1000, default='')
+    company_phone = PhoneNumberField(null=True)
+    company_website = models.URLField(max_length=1000, default='')
+    company_linkedin = models.URLField(max_length=1000, default='')
     company_logo = models.TextField(null=True, blank=True)
     company_location = models.CharField(max_length=300)
     title = models.CharField(max_length=100)
     slug = models.SlugField(null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    description = models.TextField(max_length=300, default='')
     salary_range = models.CharField(max_length=100, default='')
     job_type = models.CharField(max_length=100, default='Full Time')
     job_description = models.TextField(max_length=5000, default='')
     location = models.CharField(max_length=100, default='')
-    application_deadline = models.DateTimeField()
+    application_deadline = models.DateField()
     experience = models.IntegerField(default=0)
     qualification = models.CharField(max_length=100, default='')
-    link_to_job = models.CharField(max_length=1000, default='')
+    link_to_job = models.URLField(max_length=1000, default='')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
