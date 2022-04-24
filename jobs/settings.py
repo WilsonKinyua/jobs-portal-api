@@ -25,7 +25,7 @@ MODE = os.environ.get('MODE', default='development')
 
 SECRET_KEY = os.environ.get('SECRET_KEY', default='secret_key')
 
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = False
 
 # ALLOWED_HOSTS = ['*']
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'jobs-platform.herokuapp.com']
