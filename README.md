@@ -2,6 +2,15 @@
 
 Jobs Portal API is a RESTful API that provides a way to create, update, delete and retrieve jobs. It also provides a way to create and retrieve users.
 
+# Admin Login Credentials 🔑
+
+```json
+{
+  "username": "john",
+  "password": "password"
+}
+```
+
 # Setup Requirements
 
     - Git (to clone the repository)
@@ -36,7 +45,7 @@ Jobs Portal API is a RESTful API that provides a way to create, update, delete a
 # Endpoints
 
 - Root endpoint:
-  - []()
+  - [https://jobs-platform.herokuapp.com](https://jobs-platform.herokuapp.com)
 
 > POST
 
@@ -64,7 +73,7 @@ Jobs Portal API is a RESTful API that provides a way to create, update, delete a
 
 > POST
 
-`/api/auth/token/`
+`/auth/`
 
 - Create a new token
 
@@ -105,7 +114,7 @@ Jobs Portal API is a RESTful API that provides a way to create, update, delete a
 }
 ```
 
-`/user/{id}/job/list/`
+`/user/{id}/jobs`
 
 - Get a list of jobs for a specific user
 
@@ -253,7 +262,7 @@ Jobs Portal API is a RESTful API that provides a way to create, update, delete a
   }
 ```
 
-`/job/{id}/details/`
+`/job/{id}/`
 
 - Get job details
 
@@ -283,7 +292,7 @@ Jobs Portal API is a RESTful API that provides a way to create, update, delete a
   }
 ```
 
-`/job/{id}/details/`
+`/job/{id}/`
 
 - Update job details
 
@@ -337,7 +346,7 @@ Jobs Portal API is a RESTful API that provides a way to create, update, delete a
 }
 ```
 
-`/job/{id}/details/`
+`/job/{id}/`
 
     - Delete job details
 
@@ -355,22 +364,22 @@ Jobs Portal API is a RESTful API that provides a way to create, update, delete a
 
 ```json
 [
-    {
+  {
     "id": 1,
     "name": "Technology",
     "icon": "fa fa-briefcase",
     "description": "Technology helps..."
-    },
-    {
-        "id": 1,
-        "name": "Technology",
-        "icon": "fa fa-briefcase",
-        "description": "Technology helps..."
-    }
+  },
+  {
+    "id": 1,
+    "name": "Technology",
+    "icon": "fa fa-briefcase",
+    "description": "Technology helps..."
+  }
 ]
 ```
 
-`/category/{id}/job/list`
+`/category/{id}/jobs`
 
 - Get a list of jobs in a category
 
@@ -403,14 +412,18 @@ Jobs Portal API is a RESTful API that provides a way to create, update, delete a
 ```
 
 # Known Bugs
+
 So far so good there are no bugs related to this project 😎
 
 # Support and contact details 😃
+
 To make a contribution to the code used or any suggestions you can click on the contact link and email me your suggestions.
 
 - Email: wilsonkinyuam@gmail.com
 - Phone: +254717255460
+
 # License
+
 Copyright (c) 2022 Wilson Kinyua
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files , to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
