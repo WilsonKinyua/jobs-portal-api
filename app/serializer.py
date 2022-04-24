@@ -49,7 +49,7 @@ class CategorySerializer(serializers.ModelSerializer):
 class JobSerializer(serializers.ModelSerializer):
     class Meta:
         model = Job
-        fields = ('id','company_name', 'company_email', 'company_phone', 'company_website', 'company_linkedin', 'company_logo', 'company_location', 'title', 'slug', 'category',
+        fields = ('id', 'company_name', 'company_website', 'title', 'slug', 'category',
                   'salary_range', 'job_type', 'job_description', 'location', 'application_deadline', 'experience', 'qualification', 'link_to_job', 'user', 'created_at')
         extra_kwargs = {'user': {'read_only': True}}
 
@@ -58,7 +58,7 @@ class JobSerializer(serializers.ModelSerializer):
 class CreateJobSerializer(serializers.ModelSerializer):
     class Meta:
         model = Job
-        fields = ('company_name', 'company_email', 'company_phone', 'company_website', 'company_linkedin', 'company_logo', 'company_location', 'title', 'category',
+        fields = ('company_name', 'company_website', 'title', 'category',
                   'salary_range', 'job_type', 'job_description', 'location', 'application_deadline', 'experience', 'qualification', 'link_to_job', 'user')
 
     # create job

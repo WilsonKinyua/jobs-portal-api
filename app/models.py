@@ -7,8 +7,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 # jobs category model
 class Category(models.Model):
     name = models.CharField(max_length=100)
-    icon = models.CharField(max_length=200, default='fa fa-briefcase')
-    description = models.TextField(max_length=300, default='')
+    icon = models.CharField(max_length=200, default='fa fa-briefcase') 
 
     def __str__(self):
         return self.name
@@ -17,12 +16,7 @@ class Category(models.Model):
 # jobs model
 class Job(models.Model):
     company_name = models.CharField(max_length=1000)
-    company_email = models.EmailField(max_length=100)
-    company_phone = PhoneNumberField(null=True)
     company_website = models.URLField(max_length=1000, default='')
-    company_linkedin = models.URLField(max_length=1000, default='')
-    company_logo = models.TextField(null=True, blank=True)
-    company_location = models.CharField(max_length=1000)
     title = models.CharField(max_length=1000)
     slug = models.SlugField(null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
