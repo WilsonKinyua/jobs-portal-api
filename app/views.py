@@ -44,12 +44,12 @@ class getUser(APIView):
         except User.DoesNotExist:
             raise Http404
 
-    def get(self, request, format=None):
+    def get(self, request, token, format=None):
         data = {}
-        if request.META.get('HTTP_AUTHORIZATION') is None:
-            data['error'] = 'Invalid token'
+        if token is None:
+            data['error'] = 'Provide token'
             return Response(data, status=status.HTTP_400_BAD_REQUEST)
-        user = self.get_object(request.META.get('HTTP_AUTHORIZATION'))
+        user = self.get_object(token)
         return Response(UserSerializer(user).data, status=status.HTTP_200_OK)
 
 
