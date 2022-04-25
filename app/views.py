@@ -131,6 +131,25 @@ class JobDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+# search job by title
+class JobByTitle(APIView):
+    """
+        job by title view
+    """
+    schema = get_schema_view()
+
+    def get_object(self, title):
+        try:
+            return Job.objects.get(title__icontains=title)
+        except Job.DoesNotExist:
+            raise Http404
+
+    def get(self, request, title, format=None):
+        jobs = Job.objects.filter(title__icontains=title)
+        serializer = JobSerializer(jobs, many=True)
+        return Response(serializer.data)
+
+
 # get all jobs by category_id
 class JobByCategory(APIView):
     """
