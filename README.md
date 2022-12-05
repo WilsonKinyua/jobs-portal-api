@@ -420,7 +420,6 @@ So far so good there are no bugs related to this project 😎
 To make a contribution to the code used or any suggestions you can click on the contact link and email me your suggestions.
 
 - Email: wilsonkinyuam@gmail.com
-- Phone: +254717255460
 
 # License
 
